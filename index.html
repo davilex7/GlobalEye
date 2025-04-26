@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Lens</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 15px;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 30px); /* Full height minus padding */
+            box-sizing: border-box;
+            margin: 0;
+        }
+        h1 {
+            margin-top: 0;
+            color: #0056b3;
+            text-align: center;
+        }
+        .controls, .language-select, .continuous-controls { /* Added continuous-controls */
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px; /* Spacing between items */
+            align-items: center; /* Vertically align items */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+         .language-select label {
+            margin-right: 5px;
+            font-weight: bold;
+         }
+        select, button {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            transition: background-color 0.2s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+         button:disabled { /* Style for disabled buttons */
+             background-color: #6c757d;
+             cursor: not-allowed;
+         }
+         button#close-overlay-button, button#stop-continuous-button { /* Grouped red buttons */
+            background-color: #dc3545; /* Red for close/stop actions */
+         }
+         button#close-overlay-button:hover, button#stop-continuous-button:hover {
+             background-color: #c82333;
+         }
+         button#start-continuous-button { /* Specific style for start */
+             background-color: #28a745; /* Green */
+         }
+         button#start-continuous-button:hover {
+             background-color: #218838;
+         }
+        #status {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 0.9em;
+            min-height: 20px; /* Ensure it has some height even when empty */
+            word-wrap: break-word; /* Wrap long messages */
+        }
+        #result {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            flex-grow: 1; /* Take remaining vertical space */
+            overflow-y: auto; /* Add scroll if content overflows */
+            font-size: 0.95em;
+        }
+        #result pre {
+            white-space: pre-wrap; /* Wrap text inside pre */
+            word-wrap: break-word;
+            background-color: #f8f9fa;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+         #result hr {
+             border: none;
+             border-top: 1px solid #eee;
+             margin: 15px 0;
+         }
+    </style>
+</head>
+<body>
+    <h1>Global Lens</h1>
+
+    <div class="controls">
+        <button id="select-area-button">Seleccionar Área y Traducir</button>
+        <button id="close-overlay-button" style="display: none;">Cerrar Superposición</button>
+    </div>
+
+    <div class="continuous-controls">
+        <button id="start-continuous-button" disabled>Iniciar Captura Continua</button>
+        <button id="stop-continuous-button" disabled>Detener Captura Continua</button>
+    </div>
+
+    <div class="language-select">
+        <label for="ocr-lang">Idioma OCR:</label>
+        <select id="ocr-lang">
+            <option value="eng">Inglés (English)</option>
+            <option value="spa">Español (Spanish)</option>
+            <option value="fra">Francés (French)</option>
+            <option value="deu">Alemán (German)</option>
+            <option value="ita">Italiano (Italian)</option>
+            <option value="por">Portugués (Portuguese)</option>
+            <option value="jpn">Japonés (Japanese)</option>
+            <option value="chi_sim">Chino Simplificado (Chinese Simplified)</option>
+            </select>
+
+        <label for="target-lang">Traducir a:</label>
+        <select id="target-lang">
+            <option value="es">Español (Spanish)</option>
+            <option value="en">Inglés (English)</option>
+            <option value="fr">Francés (French)</option>
+            <option value="de">Alemán (German)</option>
+            <option value="it">Italiano (Italian)</option>
+            <option value="pt">Portugués (Portuguese)</option>
+            <option value="ja">Japonés (Japanese)</option>
+            <option value="zh-CN">Chino Simplificado (Chinese Simplified)</option>
+             </select>
+    </div>
+
+    <div id="status">Esperando acción...</div>
+
+    <div id="result">
+        </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
