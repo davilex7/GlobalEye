@@ -1,12 +1,12 @@
-# Global Lens (Enhanced)
+# GlobalEye
 
 ## Descripción
-GlobalLens es una aplicación de escritorio construida con Electron que permite al usuario seleccionar un área de su pantalla, realizar un Reconocimiento Óptico de Caracteres (OCR) sobre el texto en esa área, y traducir dicho texto al idioma deseado. La traducción se muestra en una ventana de superposición (overlay) cerca del área seleccionada.
+GlobalEye es una aplicación de escritorio construida con Electron que permite al usuario seleccionar un área de su pantalla, realizar un Reconocimiento Óptico de Caracteres (OCR) sobre el texto en esa área, y traducir dicho texto al idioma deseado. La traducción se muestra en una ventana de superposición (overlay) cerca del área seleccionada.
 
 ## Características
 * Selección de área de pantalla interactiva.
 * OCR utilizando Tesseract.js.
-* Traducción utilizando Google Translate (a través de `@vitalets/google-translate-api`).
+* Traducción mediante la API gratuita de [MyMemory](https://mymemory.translated.net/), sin necesidad de clave.
 * Selección de idioma para OCR y traducción.
 * Visualización de la traducción en una ventana de superposición no intrusiva y movible.
 * Interfaz de usuario simple para controlar la aplicación.
@@ -17,15 +17,15 @@ GlobalLens es una aplicación de escritorio construida con Electron que permite 
 ## Instalación
 1.  **Clona el repositorio (o descarga y descomprime el código):**
     ```bash
-    git clone <url-del-repositorio>
-    cd global-lens-enhanced
+    git clone https://github.com/davilex7/GlobalEye.git
+    cd GlobalEye
     ```
 2.  **Instala las dependencias:**
     Abre una terminal o línea de comandos en el directorio del proyecto y ejecuta:
     ```bash
     npm install
     ```
-    Esto descargará Electron, Tesseract.js, el API de traducción y otras dependencias necesarias. Puede tardar un poco, especialmente Tesseract.js que descarga los datos de idioma.
+    Esto descargará Electron, Tesseract.js y el resto de dependencias. Puede tardar un poco, especialmente Tesseract.js que descarga los datos de idioma.
 
 ## Uso
 1.  **Inicia la aplicación:**
@@ -60,7 +60,7 @@ Si deseas crear un ejecutable independiente para tu sistema operativo (Windows, 
 
 ## Notas
 * La precisión del OCR depende de la calidad de la imagen (resolución, claridad, fuente) y del idioma seleccionado.
-* La traducción utiliza un servicio externo (Google Translate) y requiere conexión a internet. La librería `@vitalets/google-translate-api` puede ser sensible a cambios en la API de Google.
+* La traducción utiliza un servicio externo (MyMemory) y requiere conexión a internet. Su plan gratuito tiene un límite diario de caracteres.
 * Los datos de idioma de Tesseract (`.traineddata`) se descargan automáticamente la primera vez que se necesita un idioma específico.
 
 ## Licencia
