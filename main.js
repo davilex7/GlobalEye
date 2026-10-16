@@ -17,7 +17,7 @@ try {
 // --- Configuration ---
 // *** PON TU CORREO ELECTRÓNICO AQUÍ para aumentar el límite de MyMemory (opcional) ***
 // Si lo dejas como null o "", se usará la API de forma anónima.
-const MYMEMORY_EMAIL = "batdavid2015@gmail.com"; // <-- REEMPLAZA ESTO
+const MYMEMORY_EMAIL = ""; // <-- REEMPLAZA ESTO
 
 // --- Preprocessing Configuration ---
 const PREPROCESSING_OPTIONS = {
